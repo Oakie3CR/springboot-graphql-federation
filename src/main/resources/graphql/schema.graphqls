@@ -1,0 +1,73 @@
+enum Genre {
+    ROMANCE,
+    FICTION,
+    FANTASY,
+    SCI_FI
+}
+
+type Author {
+    id: Int!
+    name: String!
+    books: [Book!]!
+}
+
+type AuthorNotFound  {
+    message: String!
+}
+
+union AuthorResult = Author | AuthorNotFound
+
+input CreateAuthorInput {
+    name: String!
+}
+
+input UpdateAuthorInput {
+    id: Int!
+    name: String
+}
+
+type Book {
+    id: Int!
+    name: String!
+    genre: Genre!
+    author: Author!
+}
+
+type BookNotFound {
+    message: String!
+}
+
+union BookResult = Book | BookNotFound
+
+input CreateBookInput {
+    name: String!
+    genre: Genre!
+    authorId: Int!
+}
+
+input UpdateBookInput {
+    id: Int!
+    name: String
+    genre: Genre
+    authorId: Int
+}
+
+type Query {
+    "Simply returns 'true'."
+    healthCheck: Boolean!
+
+    getAuthors: [Author!]!
+    getAuthorById(id: Int!): AuthorResult
+
+    getBooks: [Book!]!
+    getBookById(id: Int!): BookResult
+    getBooksByGenre(genre: Genre!): [Book!]!
+}
+
+type Mutation {
+    addAuthor(input: CreateAuthorInput!): AuthorResult!
+    updateAuthor(input: UpdateAuthorInput!): AuthorResult!
+
+    addBook(input: CreateBookInput!): BookResult!
+    updateBook(input: UpdateBookInput): BookResult!
+}

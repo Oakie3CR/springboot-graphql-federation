@@ -1,0 +1,16 @@
+spring:
+  application.name: federation
+
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/authors?stringtype=unspecified
+    username: guest
+    password: guest
+    driverClassName: org.postgresql.Driver
+  graphql:
+    graphiql:
+      enabled: true
+
+#logging.level.org.springframework.core:
+#  JdbcTemplate: DEBUG
+#  StatementCreatorUtils=TRACE:

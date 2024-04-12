@@ -1,0 +1,11 @@
+services:
+  authors_db:
+    image: postgres
+    container_name: authors_db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: authors
+      POSTGRES_PASSWORD: guest
+      POSTGRES_USER: guest
+      PG_TRUST_LOCALNET: 'true'
