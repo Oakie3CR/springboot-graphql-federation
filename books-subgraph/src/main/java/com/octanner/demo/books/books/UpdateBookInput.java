@@ -1,4 +1,4 @@
-package com.octanner.demo.federation.books;
+package com.octanner.demo.books.books;
 
 import lombok.Builder;
 

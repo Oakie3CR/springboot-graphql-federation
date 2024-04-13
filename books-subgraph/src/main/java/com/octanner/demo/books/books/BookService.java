@@ -1,4 +1,4 @@
-package com.octanner.demo.federation.books;
+package com.octanner.demo.books.books;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -27,21 +27,13 @@ public class BookService {
     }
   }
 
-  public List<Book> getByGenre(String genre) {
+  public List<Book> getByGenre(Genre genre) {
     return bookRepository.findAllByGenre(genre);
   }
 
-  public BookResult save(String name, Genre genre, int authorId) {
+  public BookResult save(Book book) {
     try {
-      return bookRepository.save(name, genre, authorId);
-    } catch (DbActionExecutionException e) {
-      return new BookNotFound("There is no book with that id");
-    }
-  }
-
-  public BookResult update(int id, String name, Genre genre, int authorId) {
-    try {
-      return bookRepository.update(id, name, genre, authorId);
+      return bookRepository.save(book);
     } catch (DbActionExecutionException e) {
       return new BookNotFound("There is no book with that id");
     }

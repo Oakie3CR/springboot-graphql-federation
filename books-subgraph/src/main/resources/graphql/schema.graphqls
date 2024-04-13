@@ -9,7 +9,6 @@ type Book {
     id: Int!
     name: String!
     genre: Genre!
-    author: Author!
 }
 
 type BookNotFound {
