@@ -33,8 +33,7 @@ public class BookService {
 
   public BookResult save(Book book) {
     try {
-      var newBook = bookRepository.save(book);
-      return newBook;
+      return bookRepository.save(book);
     } catch (DbActionExecutionException e) {
       return new BookNotFound("There is no book with that id");
     }
