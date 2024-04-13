@@ -20,14 +20,12 @@ union BookResult = Book | BookNotFound
 input CreateBookInput {
     name: String!
     genre: Genre!
-    authorId: Int!
 }
 
 input UpdateBookInput {
     id: Int!
     name: String
     genre: Genre
-    authorId: Int
 }
 
 type Query {
