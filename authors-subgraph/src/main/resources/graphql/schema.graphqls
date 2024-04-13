@@ -1,7 +1,11 @@
 type Author {
-    id: Int!
+    id: ID!
     name: String!
-#    books: [Book!]!
+    books: [Book!]!
+}
+
+type Book {
+    id: ID!
 }
 
 type AuthorNotFound  {
