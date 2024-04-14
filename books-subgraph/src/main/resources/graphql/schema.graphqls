@@ -6,7 +6,7 @@ enum Genre {
 }
 
 type Book {
-    id: Int!
+    id: ID!
     name: String!
     genre: Genre!
 }
