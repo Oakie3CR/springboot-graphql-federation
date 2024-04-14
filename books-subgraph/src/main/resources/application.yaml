@@ -11,6 +11,8 @@ spring:
     graphiql:
       enabled: true
 
+server.port: 8081
+
 #logging.level.org.springframework.core:
 #  JdbcTemplate: DEBUG
 #  StatementCreatorUtils=TRACE:
