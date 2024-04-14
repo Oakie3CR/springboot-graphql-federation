@@ -26,12 +26,7 @@ public class AuthorResultSetExtractor implements ResultSetExtractor<List<Author>
       }
       int bookId = rs.getInt("book_id");
       if (bookId != 0 && !rs.wasNull()) {
-        author
-            .books()
-            .add(
-                Book.builder()
-                    .id(bookId)
-                    .build());
+        author.books().add(Book.builder().id(bookId).build());
       }
     }
     return authors;

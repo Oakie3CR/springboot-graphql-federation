@@ -1,16 +1,24 @@
 package com.octanner.demo.books.books;
 
 import java.util.List;
-import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.graphql.execution.BatchLoaderRegistry;
 import org.springframework.stereotype.Controller;
+import reactor.core.publisher.Mono;
 
 @Controller
-@RequiredArgsConstructor
 public class BookResolver {
+
   private final BookService bookService;
+
+  public BookResolver(BookService bookService, BatchLoaderRegistry registry) {
+    this.bookService = bookService;
+    registry
+        .forTypePair(Integer.class, Book.class)
+        .registerMappedBatchLoader((ids, env) -> Mono.justOrEmpty(bookService.getBooksByIds(ids)));
+  }
 
   @QueryMapping
   public List<Book> getBooks() {
