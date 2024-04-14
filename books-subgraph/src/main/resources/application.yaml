@@ -13,6 +13,6 @@ spring:
 
 server.port: 8081
 
-#logging.level.org.springframework.core:
+#logging.level.org.springframework.jdbc.core:
 #  JdbcTemplate: DEBUG
-#  StatementCreatorUtils=TRACE:
+#  StatementCreatorUtils: TRACE
