@@ -1,3 +1,8 @@
+# (Subgraph schemas include
+# this to opt in to
+# Federation 2 features.)
+extend schema @link(url: "https://specs.apollo.dev/federation/v2.3", import: ["@key", "@shareable"])
+
 enum Genre {
     ROMANCE,
     FICTION,
@@ -5,7 +10,7 @@ enum Genre {
     SCI_FI
 }
 
-type Book {
+type Book @key(fields: "id"){
     id: ID!
     name: String!
     genre: Genre!
@@ -29,9 +34,6 @@ input UpdateBookInput {
 }
 
 type Query {
-    "Simply returns 'true'."
-    healthCheck: Boolean!
-
     getBooks: [Book!]!
     getBookById(id: Int!): BookResult
     getBooksByGenre(genre: Genre!): [Book!]!

@@ -1,10 +1,12 @@
+extend schema @link(url: "https://specs.apollo.dev/federation/v2.3", import: ["@key", "@shareable"])
+
 type Author {
     id: ID!
     name: String!
     books: [Book!]!
 }
 
-type Book {
+type Book @key(fields: "id", resolvable: false){
     id: ID!
 }
 
@@ -24,9 +26,6 @@ input UpdateAuthorInput {
 }
 
 type Query {
-    "Simply returns 'true'."
-    healthCheck: Boolean!
-
     getAuthors: [Author!]!
     getAuthorById(id: Int!): AuthorResult
 }
