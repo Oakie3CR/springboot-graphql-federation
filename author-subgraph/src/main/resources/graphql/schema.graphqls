@@ -1,0 +1,46 @@
+extend schema @link(url: "https://specs.apollo.dev/federation/v2.3", import: ["@key", "@shareable"])
+
+type Author {
+    id: ID!
+    name: String!
+    media: [Media!]!
+}
+
+interface MediaInterface {
+    id: ID!
+}
+
+union Media = Book | Movie
+
+type Movie implements MediaInterface @key(fields: "id", resolvable: false){
+    id: ID!
+}
+
+type Book implements MediaInterface @key(fields: "id", resolvable: false){
+    id: ID!
+}
+
+type AuthorNotFound  {
+    message: String!
+}
+
+union AuthorResult = Author | AuthorNotFound
+
+input CreateAuthorInput {
+    name: String!
+}
+
+input UpdateAuthorInput {
+    id: Int!
+    name: String
+}
+
+type Query {
+    getAuthors: [Author!]!
+    getAuthorById(id: Int!): AuthorResult
+}
+
+type Mutation {
+    addAuthor(input: CreateAuthorInput!): AuthorResult!
+    updateAuthor(input: UpdateAuthorInput!): AuthorResult!
+}

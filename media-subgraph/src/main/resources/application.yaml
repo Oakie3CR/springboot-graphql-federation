@@ -1,0 +1,18 @@
+spring:
+  application.name: books
+
+
+  datasource:
+    url: jdbc:postgresql://localhost:5433/books?stringtype=unspecified
+    username: guest
+    password: guest
+    driverClassName: org.postgresql.Driver
+  graphql:
+    graphiql:
+      enabled: true
+
+server.port: 8081
+
+logging.level.org.springframework.jdbc.core:
+  JdbcTemplate: DEBUG
+  StatementCreatorUtils: TRACE

@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+rover dev --supergraph-config ./supergraph-config.yaml
